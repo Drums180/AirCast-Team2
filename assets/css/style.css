@@ -1,7 +1,113 @@
-span {
+form {
+    width: 95%; /* set a smaller width for the form */
+    margin: 70px auto; /* center the form horizontally and add a margin for spacing */
+    display: flex; /* use flexbox for the form layout */
+    justify-content: space-between; /* distribute the form fields evenly horizontally */
+    align-items: center; /* center the form fields vertically */
+    background-color: transparent; /* remove the background color for a minimal look */
+    padding: 20px;
+    border: 1px solid #0077be; /* blue border */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* shadow effect */
+}
+
+label {
+    width: 40%; /* set a width for the labels */
+    text-align: left; 
+    font-size: 1.2rem; 
+    font-weight: bold;
+    color: #0077be; 
+}
+
+input[type="text"], input[type="date"], input[type="number"], select {
+    width: 100%; /* set a width for the form fields */
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none; /* remove the border for a minimal look */
+    background-color: #f5f5f5; /* light gray background color for the form fields */
+    color: #0077be; /* blue color for the form field text */
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #0077be; /* blue submit button */
+    color: #ffffff; /* white submit button text */
+    padding: 14px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem; /* reduce font size to make it smaller */
+}
+
+input[type="submit"]:hover {
+    background-color: #004d80; /* darker blue on hover */
+}
+
+/* Search Flights Control Pannel */
+.searchColumns span {
     display: flex;
 }
 
-button {
+.searchColumns button {
     margin-left: 10px;
+}
+
+/* Display Best Flies */
+
+
+/* Weather Dashboard  */
+
+/* Extra stuff */
+#testimonials {
+    text-align: center;
+}
+    
+#flight {
+    text-align: center;
+}
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-items {
+    width: 100%;
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    flex: 1;
+    width: 100%;
+    min-width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
 }

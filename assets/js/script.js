@@ -73,7 +73,9 @@ $(function () {
 
         var today = dayjs();
 
+
         var mainCard = $("#TemperatureCard");
+        var todayTitle = $(mainCard).children("h1");
         var symbol = $(mainCard).children("img");
         var temp = $(mainCard).children("#temp");
         var wind = $(mainCard).children("#wind");
@@ -85,7 +87,7 @@ $(function () {
         var mph = (data.list[0].main.temp);
         var hum = (data.list[0].wind.speed);
 
-        todayTitle.text(cityName + today.format(' MMM D, YYYY'));
+        todayTitle.text(airportLocationDestiny + today.format(' MMM D, YYYY'));
         symbol.attr("src", "https://openweathermap.org/img/w/" + icon + ".png");
         temp.text("Temperature: " + celsius.toFixed(2) + " °C");
         wind.text("Temperature: " + mph.toFixed(2) + " MPH");
