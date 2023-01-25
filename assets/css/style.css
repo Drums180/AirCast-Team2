@@ -134,7 +134,31 @@ ol button{
 }
 
 /* Display Best Flies */
+#bestFlights {
+    margin: 1% 5%;
+}
 
+.flight {
+    width: 20%;
+}
+
+.price {
+    font-size: xx-large;
+    font-weight: 700;
+    color: rgb(95, 153, 95);
+}
+
+#stops0 {
+    display: none;
+}
+
+#stops1 {
+    display: none;
+}
+
+#stops2 {
+    display: none;
+}
 
 /* TODO: Weather Dashboard  */
 #temperatureCard {
