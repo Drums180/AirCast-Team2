@@ -117,7 +117,7 @@ $(function () {
   // RETRIEVE ORIGIN
 
   function retrieveOrigin() {
-    console.log("Function is working")
+    console.log("Function is working");
     originInput = $("#origin").val();
 
     console.log(originInput)
@@ -305,31 +305,51 @@ $(function () {
           var arrivalHourFinal = arrivalHour.substr(0, 5)
           console.log(arrivalHourFinal);
 
+          $(".arrival" + i).text(arrivalHourFinal)
+
           //Departure Time
           var departure = infoFlight.legs[0].departure;
           var departureHour = departure.substring(departure.length-8);
           var departureHourFinal = departureHour.substr(0, 5)
           console.log(departureHourFinal);
 
+          $(".departure" + i).text(departureHourFinal)
+
           //Price
           var price = infoFlight.price.formatted;
           console.log(price);
+
+          $(".price" + i).text(price)
 
           //Stops / Escalas
           var stops = infoFlight.legs[0].stopCount;
           console.log(stops);
 
+          $(".stop" + i).text(stops)
+
           //Duration in minutes
           var duration = infoFlight.legs[0].durationInMinutes;
           console.log(duration);
+
+          $(".duration" + i).text(duration)
 
           //Smallest stops / viaje con menor paradas
           var smallestStops = infoFlight.legs[0].isSmallestStops;
           if (smallestStops === true){
             console.log(smallestStops);
+            $("#stops" + i).css({
+              "display": "block"
+            });
           }
 
         }
+
+        $("#temperatureCard").css({
+          "display": "block"
+        });
+        $("#bestFlights").css({
+          "display": "block"
+        });
 
       })
       .catch(function (err) {
@@ -361,6 +381,7 @@ $(function () {
       console.log("variables have no value")
       $("#modalAirports").addClass("is-active")
     } else {
+
       getApiGeocoding();
       getApiSkyScanner();
       storeSearches();

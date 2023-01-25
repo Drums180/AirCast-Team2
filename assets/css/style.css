@@ -75,6 +75,9 @@ ol button{
 }
 
 /* Search Flights Control Pannel */
+#temperatureCard {
+    display: none;
+}
 
 .titleSearch {
     text-align: center;
@@ -134,6 +137,10 @@ ol button{
 }
 
 /* Display Best Flies */
+#bestFlights {
+    display: none;
+}
+
 #bestFlights {
     margin: 1% 5%;
 }
