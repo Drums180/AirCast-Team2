@@ -53,6 +53,25 @@ input[type="submit"]:hover {
     background-color: #004d80; /* darker blue on hover */
 }
 
+/* Previous Search Pannel  */
+.previousSearches {
+    margin: 0 5%;
+}
+
+.previousSearches h1 {
+    text-align: center;
+}
+
+.previousSearches ol {
+    display: flex;
+    justify-content: center;
+    margin: 3% 0;
+}
+
+ol button{
+    margin: 0 1%;
+}
+
 /* Search Flights Control Pannel */
 
 .titleSearch {

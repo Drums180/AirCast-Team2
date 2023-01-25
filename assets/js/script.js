@@ -33,6 +33,9 @@ $(function () {
   var contryCode;
   var market;
 
+  //VARIABLES FOR LOCAL STORAGE
+  var ol = $("#listSaved")
+
   //Posibility for the future to add more parameters
   var currencyParameter = "&currency=" + currency;
   var contryCodeParameter = "&countryCode=" + contryCode;
@@ -353,7 +356,10 @@ $(function () {
 
     if (destinyInput === "" || adultsInput === "" || originInput === "" || dateInput === "") {
       console.log("input has no value")
-      
+      $("#modalSearch").addClass("is-active")
+    } else if (origin == null || destin == null){
+      console.log("variables have no value")
+      $("#modalAirports").addClass("is-active")
     } else {
       getApiGeocoding();
       getApiSkyScanner();
@@ -377,8 +383,35 @@ $(function () {
     localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
   }
 
+  function showSaved() {
+    var pastSearches = localStorage.getItem('pastSearches');
+    console.log (pastSearches) //Check for bugs
+    totalHighscores = JSON.parse(pastSearches);
+    console.log (pastSearches) //Check for bugs
+
+    for (var i = 0; i < pastSearches.length; i++) {
+        var originX = pastSearches[i].origin;
+        var destinX = pastSearches[i].destin;
+        var adultsX = pastSearches[i].adults;
+        var dateX = pastSearches[i].date;
+
+        var button = document.createElement("button");
+        button.textContent = originX + " - " + destinX  + " at " + dateX + " for " + adultsX + " persons";
+        button.addClass("button")
+        ol.appendChild(button);
+    }
+  }
+
+  //CLOSE MODALS
+  function closeModals() {
+    $("#modalAirports").removeClass("is-active");
+    $("#modalSearch").removeClass("is-active");
+  }
+
   //EVENT LISTENERS THAT TRIGGER FUNCTIONALITY
   searchOrigin.on("click", retrieveOrigin);
   searchDestiny.on("click", retrieveDestiny);
   searchFlightsBtn.on("click", searchFlights);
+  $(".delete").on("click", closeModals)
+  
 });

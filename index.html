@@ -117,6 +117,15 @@
     <!--                                            header tailwind ends                                            -->
 
 
+
+    <!-- TODO: SAVED FLIGHTS -->
+    <div class="previousSearches">
+      <h1 class="title">Previous Searches</h1>
+      <ol id="listSaved">
+      </ol>
+    </div>
+    
+
     <!--  Find your flight starts  -->
  
     <h1 class="title titleSearch">Ready to begin your journey?</h1>
@@ -145,6 +154,41 @@
           
       </div>
     </div>
+
+    <div id="modalSearch" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+        <article class="message">
+          <div class="message-header">
+            <p>Oh no!!</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body">
+            It seems you still need to answer all of the requisites in order to search for your best flight! We do this for the best of you, really.
+          </div>
+        </article>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div id="modalAirports" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+        <article class="message">
+          <div class="message-header">
+            <p>Almost Thereee!!</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body">
+            Excellent!! It seems you have filled out all of the form answers, but in order to give you specific knowledge about your airport of destination and your wished airport for arrival you need to first click in the button search Airports and look for the airport you are looking for!! Good Luck ;)
+          </div>
+        </article>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
     <!-- Find your flight ends -->
 
     <!--TODO:Best 3 Flights  -->
