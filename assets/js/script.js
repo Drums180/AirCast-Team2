@@ -33,6 +33,9 @@ $(function () {
   var contryCode;
   var market;
 
+  //VARIABLES FOR LOCAL STORAGE
+  var ol = $("#listSaved")
+
   //Posibility for the future to add more parameters
   var currencyParameter = "&currency=" + currency;
   var contryCodeParameter = "&countryCode=" + contryCode;
@@ -74,7 +77,7 @@ $(function () {
         var today = dayjs();
 
 
-        var mainCard = $("#TemperatureCard");
+        var mainCard = $("#temperatureCard");
         var todayTitle = $(mainCard).children("h1");
         var symbol = $(mainCard).children("img");
         var temp = $(mainCard).children("#temp");
@@ -93,6 +96,17 @@ $(function () {
         wind.text("Temperature: " + mph.toFixed(2) + " MPH");
         humidity.text("Temperature: " + hum.toFixed(2) + " %");
 
+        console.log(celsius)
+        if (celsius < 15) {
+          $("#temperatureCard").addClass("cold");
+          console.log("is cold");
+          $("#icon2").attr("src", "./assets/images/weather-icons/low-temperature.png");
+        } else {
+          $("#temperatureCard").addClass("hot");
+          console.log("is hot");
+          $("#icon2").attr("src", "./assets/images/weather-icons/high-temperature.png");
+        }
+
 
       });
   }
@@ -103,7 +117,7 @@ $(function () {
   // RETRIEVE ORIGIN
 
   function retrieveOrigin() {
-    console.log("Function is working")
+    console.log("Function is working");
     originInput = $("#origin").val();
 
     console.log(originInput)
@@ -126,7 +140,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '2c738f2f30msh441249a4c0cc60dp196898jsnd16018881f7f',
+        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -144,7 +158,7 @@ $(function () {
 
         var airportOptions = $("<button>")
         airportOptions.text(name);
-        airportOptions.addClass("button")
+        airportOptions.addClass("button indigo-light")
         airportOptions.attr("id", i);
 
         //SELECT ORIGIN
@@ -162,6 +176,11 @@ $(function () {
 
           parentO.empty();
         })
+
+        parentO.css({
+          "display": "flex",
+          "justify-content": "center"
+       });
 
         parentO.append(airportOptions);
       }
@@ -195,7 +214,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '2c738f2f30msh441249a4c0cc60dp196898jsnd16018881f7f',
+        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -213,7 +232,7 @@ $(function () {
 
         var airportOptions = $("<button>")
         airportOptions.text(name);
-        airportOptions.addClass("button")
+        airportOptions.addClass("button indigo-light")
         airportOptions.attr("id", i);
 
         airportOptions.on("click", function() {
@@ -230,6 +249,11 @@ $(function () {
 
           parentD.empty();
         })
+
+        parentD.css({
+          "display": "flex",
+          "justify-content": "center"
+       });
 
         parentD.append(airportOptions);
       }
@@ -255,7 +279,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '2c738f2f30msh441249a4c0cc60dp196898jsnd16018881f7f',
+        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -281,31 +305,51 @@ $(function () {
           var arrivalHourFinal = arrivalHour.substr(0, 5)
           console.log(arrivalHourFinal);
 
+          $(".arrival" + i).text(arrivalHourFinal)
+
           //Departure Time
           var departure = infoFlight.legs[0].departure;
           var departureHour = departure.substring(departure.length-8);
           var departureHourFinal = departureHour.substr(0, 5)
           console.log(departureHourFinal);
 
+          $(".departure" + i).text(departureHourFinal)
+
           //Price
           var price = infoFlight.price.formatted;
           console.log(price);
+
+          $(".price" + i).text(price)
 
           //Stops / Escalas
           var stops = infoFlight.legs[0].stopCount;
           console.log(stops);
 
+          $(".stop" + i).text(stops)
+
           //Duration in minutes
           var duration = infoFlight.legs[0].durationInMinutes;
           console.log(duration);
+
+          $(".duration" + i).text(duration)
 
           //Smallest stops / viaje con menor paradas
           var smallestStops = infoFlight.legs[0].isSmallestStops;
           if (smallestStops === true){
             console.log(smallestStops);
+            $("#stops" + i).css({
+              "display": "block"
+            });
           }
 
         }
+
+        $("#temperatureCard").css({
+          "display": "block"
+        });
+        $("#bestFlights").css({
+          "display": "block"
+        });
 
       })
       .catch(function (err) {
@@ -330,16 +374,96 @@ $(function () {
 
     requestUrlSkyScanner = "https://skyscanner44.p.rapidapi.com/search?adults=" + adults + "&origin=" + origin + "&destination=" + destin + "&departureDate=" + date;
 
-    if (destinyInput === "" || originInput === "" || dateInput === "") {
+    if (destinyInput === "" || adultsInput === "" || originInput === "" || dateInput === "") {
       console.log("input has no value")
+      $("#modalSearch").addClass("is-active")
+    } else if (origin == null || destin == null){
+      console.log("variables have no value")
+      $("#modalAirports").addClass("is-active")
     } else {
+
       getApiGeocoding();
       getApiSkyScanner();
+      storeSearches();
     }
+  }
+
+  //LOCAL STORAGE
+  var pastSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
+
+  function storeSearches() {
+    var currentSearch = {
+      originDestination: origin,
+      destinDestination: destin,
+      adultsNumber: adults,
+      dateTime: date
+    };
+
+    console.log(currentSearch)
+    pastSearches.push(currentSearch);
+    localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
+  }
+
+  function showSaved() {
+    var pastSearches = localStorage.getItem('pastSearches');
+
+    if (pastSearches == null) {
+      console.log("There are no previous searches")
+      var button = $("<button>");
+      button.text("There are no previous searches");
+      button.addClass("button");
+      ol.append(button);
+
+    } else {
+      console.log (pastSearches) //Check for bugs
+      pastSearches = JSON.parse(pastSearches);
+      console.log (pastSearches) //Check for bugs
+      
+      for (var i = 0; i < pastSearches.length; i++) {
+        var originX = pastSearches[i].originDestination;
+        var destinX = pastSearches[i].destinDestination;
+        var adultsX = pastSearches[i].adultsNumber;
+        var dateX = pastSearches[i].dateTime;
+
+        var button = $("<button>")
+        button.text(originX + " - " + destinX  + " at " + dateX + " for " + adultsX + " person(s).");
+        button.addClass("button");
+        button.attr("id", i);
+        ol.append(button);
+      }
+
+    }
+  }
+
+  function runPastSearches() {
+    console.log(this.id)
+    var pastSearches = localStorage.getItem('pastSearches');
+    pastSearches = JSON.parse(pastSearches);
+
+    var array = pastSearches[this.id]
+    origin = array.originDestination;
+    destin = array.destinDestination;
+    adults = array.adultsNumber;
+    date = array.dateTime;
+
+    requestUrlSkyScanner = "https://skyscanner44.p.rapidapi.com/search?adults=" + adults + "&origin=" + origin + "&destination=" + destin + "&departureDate=" + date;
+
+    getApiSkyScanner();
+
+  }
+
+  //CLOSE MODALS
+  function closeModals() {
+    $("#modalAirports").removeClass("is-active");
+    $("#modalSearch").removeClass("is-active");
   }
 
   //EVENT LISTENERS THAT TRIGGER FUNCTIONALITY
   searchOrigin.on("click", retrieveOrigin);
   searchDestiny.on("click", retrieveDestiny);
   searchFlightsBtn.on("click", searchFlights);
+  $(".delete").on("click", closeModals)
+  showSaved();
+  $("#listSaved").on("click",".button", runPastSearches)
+
 });

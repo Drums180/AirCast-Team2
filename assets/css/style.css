@@ -1,3 +1,11 @@
+/* TODO: Root  */
+:root {
+    /* Weather Dashboard backgound temperature variation  */
+    --cold: rgb(2,0,36) linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,57,121,1) 20%, rgba(131,184,255,1) 76%, rgba(255,255,255,1) 100%);
+    --hot: rgb(36,0,0) linear-gradient(180deg, rgba(36,0,0,1) 0%, rgba(121,9,9,1) 20%, rgba(255,188,131,1) 76%, rgba(255,255,255,1) 100%);
+}
+
+
 form {
     width: 95%; /* set a smaller width for the form */
     margin: 70px auto; /* center the form horizontally and add a margin for spacing */
@@ -45,7 +53,81 @@ input[type="submit"]:hover {
     background-color: #004d80; /* darker blue on hover */
 }
 
+/* Previous Search Pannel  */
+.previousSearches {
+    margin: 0 5%;
+}
+
+.previousSearches h1 {
+    text-align: center;
+}
+
+.previousSearches ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3% 0;
+}
+
+ol button{
+    margin: 1% 0;
+    width: 100%;
+}
+
 /* Search Flights Control Pannel */
+#temperatureCard {
+    display: none;
+}
+
+.titleSearch {
+    text-align: center;
+}
+
+#searchColumns {
+    margin: 0 5%
+}
+
+.searchAirport {
+    margin-top: 8px;
+}
+
+.searchFlight {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+#searchColumns input{
+    color: indigo;
+}
+
+.indigo-light {
+    background-color: rgb(219, 164, 255);
+    padding: 0.5rem;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 10px ;
+}
+
+.centerBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.join {
+    display: flex;
+    justify-content: space-between;
+}
+
+#date {
+    display: flex;
+    width: 63%;
+}
+
+#adults {
+    display: flex;
+    width: 35%;
+}
+
 .searchColumns span {
     display: flex;
 }
@@ -55,9 +137,70 @@ input[type="submit"]:hover {
 }
 
 /* Display Best Flies */
+#bestFlights {
+    display: none;
+}
 
+#bestFlights {
+    margin: 1% 5%;
+}
 
-/* Weather Dashboard  */
+.flight {
+    width: 20%;
+}
+
+.price {
+    font-size: xx-large;
+    font-weight: 700;
+    color: rgb(95, 153, 95);
+}
+
+#stops0 {
+    display: none;
+}
+
+#stops1 {
+    display: none;
+}
+
+#stops2 {
+    display: none;
+}
+
+/* TODO: Weather Dashboard  */
+#temperatureCard {
+    margin: 0 5%;
+}
+
+.hot {
+    background: var(--hot);
+}
+
+.cold {
+    background: var(--cold);
+}
+
+#temperatureCard h1{
+    color: white;
+}
+
+#icon {
+    position: relative;
+    bottom: 5rem;
+    left: 60rem;
+}
+
+#icon2 {
+    width: 50px;
+    position: relative;
+    bottom: -3.7rem;
+    left: 50rem;
+}
+
+.tSection {
+    text-align: center;
+    font-weight: 700;
+}
 
 /* Extra stuff */
 #testimonials {
