@@ -64,12 +64,14 @@ input[type="submit"]:hover {
 
 .previousSearches ol {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin: 3% 0;
 }
 
 ol button{
-    margin: 0 1%;
+    margin: 1% 0;
+    width: 100%;
 }
 
 /* Search Flights Control Pannel */

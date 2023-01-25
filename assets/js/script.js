@@ -279,7 +279,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '2c738f2f30msh441249a4c0cc60dp196898jsnd16018881f7f',
+        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -379,27 +379,56 @@ $(function () {
     };
 
     console.log(currentSearch)
-    highscores.push(currentSearch);
+    pastSearches.push(currentSearch);
     localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
   }
 
   function showSaved() {
     var pastSearches = localStorage.getItem('pastSearches');
-    console.log (pastSearches) //Check for bugs
-    totalHighscores = JSON.parse(pastSearches);
-    console.log (pastSearches) //Check for bugs
 
-    for (var i = 0; i < pastSearches.length; i++) {
-        var originX = pastSearches[i].origin;
-        var destinX = pastSearches[i].destin;
-        var adultsX = pastSearches[i].adults;
-        var dateX = pastSearches[i].date;
+    if (pastSearches == null) {
+      console.log("There are no previous searches")
+      var button = $("<button>");
+      button.text("There are no previous searches");
+      button.addClass("button");
+      ol.append(button);
 
-        var button = document.createElement("button");
-        button.textContent = originX + " - " + destinX  + " at " + dateX + " for " + adultsX + " persons";
-        button.addClass("button")
-        ol.appendChild(button);
+    } else {
+      console.log (pastSearches) //Check for bugs
+      pastSearches = JSON.parse(pastSearches);
+      console.log (pastSearches) //Check for bugs
+      
+      for (var i = 0; i < pastSearches.length; i++) {
+        var originX = pastSearches[i].originDestination;
+        var destinX = pastSearches[i].destinDestination;
+        var adultsX = pastSearches[i].adultsNumber;
+        var dateX = pastSearches[i].dateTime;
+
+        var button = $("<button>")
+        button.text(originX + " - " + destinX  + " at " + dateX + " for " + adultsX + " person(s).");
+        button.addClass("button");
+        button.attr("id", i);
+        ol.append(button);
+      }
+
     }
+  }
+
+  function runPastSearches() {
+    console.log(this.id)
+    var pastSearches = localStorage.getItem('pastSearches');
+    pastSearches = JSON.parse(pastSearches);
+
+    var array = pastSearches[this.id]
+    origin = array.originDestination;
+    destin = array.destinDestination;
+    adults = array.adultsNumber;
+    date = array.dateTime;
+
+    requestUrlSkyScanner = "https://skyscanner44.p.rapidapi.com/search?adults=" + adults + "&origin=" + origin + "&destination=" + destin + "&departureDate=" + date;
+
+    getApiSkyScanner();
+
   }
 
   //CLOSE MODALS
@@ -413,5 +442,7 @@ $(function () {
   searchDestiny.on("click", retrieveDestiny);
   searchFlightsBtn.on("click", searchFlights);
   $(".delete").on("click", closeModals)
-  
+  showSaved();
+  $("#listSaved").on("click",".button", runPastSearches)
+
 });
