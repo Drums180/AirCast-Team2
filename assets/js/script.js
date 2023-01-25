@@ -93,8 +93,8 @@ $(function () {
         todayTitle.text(airportLocationDestiny + today.format(' MMM D, YYYY'));
         symbol.attr("src", "https://openweathermap.org/img/w/" + icon + ".png");
         temp.text("Temperature: " + celsius.toFixed(2) + " °C");
-        wind.text("Temperature: " + mph.toFixed(2) + " MPH");
-        humidity.text("Temperature: " + hum.toFixed(2) + " %");
+        wind.text("Wind: " + mph.toFixed(2) + " MPH");
+        humidity.text("Humidity: " + hum.toFixed(2) + " %");
 
         console.log(celsius)
         if (celsius < 15) {
@@ -417,7 +417,7 @@ $(function () {
     } else {
       console.log (pastSearches) //Check for bugs
       pastSearches = JSON.parse(pastSearches);
-      console.log (pastSearches) //Check for bugs
+      console.log (pastSearches.length) //Check for bugs
       
       for (var i = 0; i < pastSearches.length; i++) {
         var originX = pastSearches[i].originDestination;
