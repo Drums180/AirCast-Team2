@@ -74,7 +74,7 @@ $(function () {
         var today = dayjs();
 
 
-        var mainCard = $("#TemperatureCard");
+        var mainCard = $("#temperatureCard");
         var todayTitle = $(mainCard).children("h1");
         var symbol = $(mainCard).children("img");
         var temp = $(mainCard).children("#temp");
@@ -92,6 +92,17 @@ $(function () {
         temp.text("Temperature: " + celsius.toFixed(2) + " °C");
         wind.text("Temperature: " + mph.toFixed(2) + " MPH");
         humidity.text("Temperature: " + hum.toFixed(2) + " %");
+
+        console.log(celsius)
+        if (celsius < 15) {
+          $("#temperatureCard").addClass("cold");
+          console.log("is cold");
+          $("#icon2").attr("src", "./assets/images/weather-icons/low-temperature.png");
+        } else {
+          $("#temperatureCard").addClass("hot");
+          console.log("is hot");
+          $("#icon2").attr("src", "./assets/images/weather-icons/high-temperature.png");
+        }
 
 
       });
@@ -126,7 +137,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '2c738f2f30msh441249a4c0cc60dp196898jsnd16018881f7f',
+        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -144,7 +155,7 @@ $(function () {
 
         var airportOptions = $("<button>")
         airportOptions.text(name);
-        airportOptions.addClass("button")
+        airportOptions.addClass("button indigo-light")
         airportOptions.attr("id", i);
 
         //SELECT ORIGIN
@@ -162,6 +173,11 @@ $(function () {
 
           parentO.empty();
         })
+
+        parentO.css({
+          "display": "flex",
+          "justify-content": "center"
+       });
 
         parentO.append(airportOptions);
       }
@@ -195,7 +211,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '2c738f2f30msh441249a4c0cc60dp196898jsnd16018881f7f',
+        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -213,7 +229,7 @@ $(function () {
 
         var airportOptions = $("<button>")
         airportOptions.text(name);
-        airportOptions.addClass("button")
+        airportOptions.addClass("button indigo-light")
         airportOptions.attr("id", i);
 
         airportOptions.on("click", function() {
@@ -230,6 +246,11 @@ $(function () {
 
           parentD.empty();
         })
+
+        parentD.css({
+          "display": "flex",
+          "justify-content": "center"
+       });
 
         parentD.append(airportOptions);
       }
@@ -330,12 +351,30 @@ $(function () {
 
     requestUrlSkyScanner = "https://skyscanner44.p.rapidapi.com/search?adults=" + adults + "&origin=" + origin + "&destination=" + destin + "&departureDate=" + date;
 
-    if (destinyInput === "" || originInput === "" || dateInput === "") {
+    if (destinyInput === "" || adultsInput === "" || originInput === "" || dateInput === "") {
       console.log("input has no value")
+      
     } else {
       getApiGeocoding();
       getApiSkyScanner();
+      storeSearches();
     }
+  }
+
+  //LOCAL STORAGE
+  var pastSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
+
+  function storeSearches() {
+    var currentSearch = {
+      originDestination: origin,
+      destinDestination: destin,
+      adultsNumber: adults,
+      dateTime: date
+    };
+
+    console.log(currentSearch)
+    highscores.push(currentSearch);
+    localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
   }
 
   //EVENT LISTENERS THAT TRIGGER FUNCTIONALITY
