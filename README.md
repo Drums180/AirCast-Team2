@@ -93,7 +93,7 @@ We will need to make requests with the fetch() function. We need to specify the 
 
 This section is the culmination of all the hard work put into the HTML, CSS, and JavaScript. It presents the user with the final results for the selected city, including the best flight options and the current temperature.
 
-![image-17-1](https://user-images.githubusercontent.com/116314228/214729096-aab54676-fbb5-463e-bb8f-b57e7863cae0.png)
+<img width="1345" alt="Captura de pantalla 2023-01-25 a la(s) 18 57 08" src="https://user-images.githubusercontent.com/118247139/214730807-88a29821-bac5-4acd-8aa8-4b494c6ebaf7.png">
 
 ## Future Changes
 
