@@ -115,9 +115,9 @@ We value your opinion and are constantly striving to improve our weather forecas
 
 ## Deployed links
 
-* [Github Pages](https://drums180.github.io/Project-1/)
+* [Github Pages](https://drums180.github.io/AirCast-Team2/)
 
-* [Github Repository](https://github.com/Drums180/Project-1)
+* [Github Repository](https://github.com/Drums180/AirCast-Team2)
 
 ## Credits
 
