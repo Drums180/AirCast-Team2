@@ -140,7 +140,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
+        'X-RapidAPI-Key': '64c3283968msh17fe5ff21ec327fp1027c0jsn9ed6930a3ad8',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -214,7 +214,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
+        'X-RapidAPI-Key': '64c3283968msh17fe5ff21ec327fp1027c0jsn9ed6930a3ad8',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -279,7 +279,7 @@ $(function () {
     var options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'eb8bdd8305msha37c4672313737bp165382jsn02bde9b3825b',
+        'X-RapidAPI-Key': '64c3283968msh17fe5ff21ec327fp1027c0jsn9ed6930a3ad8',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
       }
     };
@@ -396,7 +396,8 @@ $(function () {
       originDestination: origin,
       destinDestination: destin,
       adultsNumber: adults,
-      dateTime: date
+      dateTime: date,
+      cityDestiny: inputCity
     };
 
     console.log(currentSearch)
@@ -439,17 +440,19 @@ $(function () {
     console.log(this.id)
     var pastSearches = localStorage.getItem('pastSearches');
     pastSearches = JSON.parse(pastSearches);
+    console.log(pastSearches)
 
-    var array = pastSearches[this.id]
+    var array = pastSearches[this.id];
     origin = array.originDestination;
     destin = array.destinDestination;
     adults = array.adultsNumber;
     date = array.dateTime;
+    airportLocationDestiny = array.cityDestiny;
 
     requestUrlSkyScanner = "https://skyscanner44.p.rapidapi.com/search?adults=" + adults + "&origin=" + origin + "&destination=" + destin + "&departureDate=" + date;
 
     getApiSkyScanner();
-
+    getApiGeocoding();
   }
 
   //CLOSE MODALS
