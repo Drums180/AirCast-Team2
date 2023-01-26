@@ -16,7 +16,7 @@
 
 Welcome to our web application, the Flight and Weather Planner! Our goal is to simplify the process of travel planning by providing all the necessary information in one convenient location. With our application, you'll be able to search for the best deals on flights and view real-time weather updates for your destination all in one place. Say goodbye to the hassle of searching multiple websites, and hello to a more efficient and enjoyable travel planning experience. 💻🛫🌦️
 
-![working site](image-1.png)
+![image-1](https://user-images.githubusercontent.com/116314228/214728851-d3962581-6ecf-4449-8550-dd55819d225e.png)
 
 We have integrated the Skyscanner API to search for the best deals on flights and the Open Weather API to provide real-time weather updates for the user's destination. This means that you no longer have to waste time searching multiple websites, and can plan your trip with ease. To make it even easier, our application only displays the top 3 flight options, making it simple for you to compare and choose the best flight for you. With our user-friendly interface, you can quickly and easily find the information you need to plan your next trip.🛫🌦️🗺️
 
@@ -50,13 +50,13 @@ Overall, the use of Tailwind CSS in our project was extremely beneficial, it not
 
 * Tailwind code example
 
-![Tailwind](image.png)
+![image](https://user-images.githubusercontent.com/116314228/214728953-b843d257-4a7a-4a65-9f58-cd0300a13fa2.png)
 
 ### Flight search form
 
 This form allows users to easily search and compare flights by inputting the necessary information. Once the origin and destination cities are selected, a list of airports in the destination city will be presented for further selection. Users will then be prompted to enter their desired flight date and number of passengers.
 
-![Search form](image-5.png)
+![image-5](https://user-images.githubusercontent.com/116314228/214728977-948186a4-d05e-4bc2-a882-2e8fb1c3cc8a.png)
 
 #### Variables of the form
 
@@ -72,27 +72,28 @@ In this section, we utilized the OpenWeather API to provide a real-time display 
 
 We will need to make requests with the fetch() function. We need to specify the endpoint, provide necessary parameters, and include the API key, The API will respond with flight information that we can parse and display to the user.
 
-![open weather](image-16.png)
+![image-16](https://user-images.githubusercontent.com/116314228/214729001-fbe70aec-cd4d-495e-9385-5f684f8be396.png)
 
 ### Flight results
 
 Upon submitting the form, users will be presented with the top three best flight options, carefully curated and selected based on their preferences and requirements. The results will include all the necessary information such as flight schedule, ticket prices, and duration, so that users can easily compare and choose the best option for them.
 Additionally, to ensure that users have all the information they need to plan their trip, we also provide the current weather forecast of the destination city. This way, users can plan accordingly and pack the appropriate clothing for their trip. Not only that, but also plan their itinerary, and make the most of their travel experience.
 
-![flight result](image-19.png)
+![image-19](https://user-images.githubusercontent.com/116314228/214729037-36903561-b032-4603-bebf-6e857cbe406c.png)
+
 
 #### Calling SkyScanner API
 
 We will need to make requests with the fetch() function. We need to specify the endpoint, provide necessary parameters, and include the API key, The API will respond with flight information that we can parse and display to the user.
 
-![skyscanner](image-14.png)
-![skyscanner2](image-15.png)
+![image-14](https://user-images.githubusercontent.com/116314228/214729054-aad067e2-f67e-42be-98a6-c5ac0eb0a559.png)
+![image-15](https://user-images.githubusercontent.com/116314228/214729059-b3ffa1d4-0247-401c-b735-f7ad1500b839.png)
 
 ## Final Result
 
 This section is the culmination of all the hard work put into the HTML, CSS, and JavaScript. It presents the user with the final results for the selected city, including the best flight options and the current temperature.
-![final result](image-17-1.png)
 
+![image-17-1](https://user-images.githubusercontent.com/116314228/214729096-aab54676-fbb5-463e-bb8f-b57e7863cae0.png)
 
 ## Future Changes
 
